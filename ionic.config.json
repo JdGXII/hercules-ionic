@@ -1,0 +1,8 @@
+{
+  "name": "HerculesIonic",
+  "app_id": "f59378dd",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
