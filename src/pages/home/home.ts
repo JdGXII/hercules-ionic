@@ -12,7 +12,10 @@ export class HomePage {
     {title: 'Acerca de nosotros', pic: '../assets/imgs/uha-all-hands-in-1.jpg', pushPage: 'AboutPage'},
     {title: 'Tipos de trabajos', pic: '../assets/imgs/uha-all-hands-in-1.jpg', pushPage: 'WorksPage'}
   ];
+
+  logPage: any;
   constructor(public navCtrl: NavController) {
+    this.logPage = 'LoginPage';
 
   }
 
