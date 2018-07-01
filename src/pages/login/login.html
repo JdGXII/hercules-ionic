@@ -18,7 +18,16 @@
       <ion-title>Ingresar a la App</ion-title>
     </ion-toolbar> 
 
-    <button ion-button color="secondary">Ingresar</button>
+    <ion-item>
+        <ion-label color="danger">Correo Electronico</ion-label>
+        <ion-input type="email" [(ngModel)]="login.email" name="email"></ion-input>    
+    </ion-item>
+    <ion-item>
+        <ion-label color="danger">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="login.password" name="password"></ion-input>    
+    </ion-item>
+
+    <button ion-button color="secondary" (click)="signOn()">Ingresar</button>
     <p>Registrate de manera gratuita</p>
     <button ion-button color="danger" [navPush]="regPage">Crear Cuenta</button>
 </ion-content>
