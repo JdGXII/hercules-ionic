@@ -11,6 +11,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { UserServiceProvider } from '../providers/user-service/user-service';
 
+import {IonicStorageModule} from '@ionic/storage';
 export const firebaseConfig = {
   apiKey:"AIzaSyAxvyHRcrCFOaSMKp1GlklRPwg1iTr12PQ",
   authDomain: "hercules-582f0.firebaseapp.com",
@@ -18,6 +19,7 @@ export const firebaseConfig = {
   storageBucket: "hercules-582f0.appspot.com",
   messagingSenderId: "978457683963"
 }
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
