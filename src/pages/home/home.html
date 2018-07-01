@@ -3,8 +3,16 @@
     <img src="assets/imgs/herculeslogo1024x1024.png">
   </ion-toolbar>
 
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="secondary" *ngIf="!loggedIn">
     <button ion-button clear [navPush]="logPage">Ingresar</button>
+  </ion-toolbar>
+
+  <ion-toolbar color="secondary" *ngIf="loggedIn">
+      <button ion-button icon-left clear small [navPush]="logPage">
+        <ion-icon name="contact"></ion-icon>
+        {{loggedIn}} con acceso
+      </button>
+      <button ion-button outline small (click)="logOut()">Salir</button>
   </ion-toolbar>
 </ion-header>
 
