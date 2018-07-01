@@ -16,6 +16,7 @@ import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/databas
 export class UserServiceProvider {
 
   items: FirebaseListObservable<any>;
+  success:boolean;
 
   constructor(public alertCtrl: AlertController, private afAuth: AngularFireAuth,
               private storage: Storage, private fbDB: AngularFireDatabase) {
@@ -81,6 +82,44 @@ export class UserServiceProvider {
     });
 
     return this.storageControl('get', user);
+  }
+
+  updateUser(theUser, theUserData){
+    let newData = {
+      creation: theUserData.creation,
+      lastLogin: new Date().toLocaleString(),
+      id: theUserData.id
+    }
+    this.items.update(newData.id, {
+      lastLogin: newData.lastLogin
+    });
+    return this.storageControl('set', theUser, newData);
+  }
+
+  logOn(user, password){
+    return this.afAuth.auth.signInWithEmailAndPassword(user, password)
+      .then(result => {
+        this.storageControl('get', user)
+        .then(returned => {
+          if(!returned) {
+            this.saveNewUser(user)
+            .then(res => this.displayAlert(user, "Nueva cuenta creada para este usuario"));
+          }
+          else{
+            this.updateUser(user, returned)
+            .then(updated => console.log(user, updated))
+          }
+        })
+
+        this.success = true;
+        return result;
+
+      })
+      .catch(err => {
+        this.success = false;
+        this.displayAlert("Error al entrar a la aplicacion", err);
+        return err;
+      });
   }
 
 }
